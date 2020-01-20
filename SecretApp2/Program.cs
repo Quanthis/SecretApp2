@@ -3,7 +3,7 @@ using System.Diagnostics;
 using static System.Console;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
+using static System.Convert;
 
 namespace SecretApp2
 {
@@ -11,10 +11,33 @@ namespace SecretApp2
     {    
         static void Main(string[] args)
         {
+            var path = @"C:\tmp\tmp2\cos.txt.";
+
+            WriteLine("Do you want to edit path to your file? Press 1. Leave default? Press 0 or wait...");
+
+            bool tf = false;
+            int tfc = Read();
+
+            if(tfc == 1)
+            {
+                tf = true;
+            }
+            
+            else if(tfc == 0)
+            {
+                tf = false;
+            }
+            WriteLine(tf);
+            if (tf)
+            {
+                WriteLine("What's your path to the txt file?");
+                path = ReadLine();
+            }
+            WriteLine(path);
+
             WriteLine("Press enter if you are sure you want to proceed. ");
             ReadLine();
                        
-            var path = @"C:\tmp\tmp2\cos.txt.";
             int i = 0;            
             int n = 0;
             

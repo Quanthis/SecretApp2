@@ -8,11 +8,11 @@ namespace SecretApp2
 {
     public class Threads
     {
-        int n;
+        int n = 0;
 
         public Threads(int no)
         {
-            no = n;
+            n = no;
         }
 
         public void Launch(int start, int end, string[] links2)
