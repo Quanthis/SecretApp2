@@ -11,12 +11,18 @@ namespace SecretApp2
     {    
         static void Main(string[] args)
         {
-            var path = @"C:\tmp\tmp2\cos.txt.";
+            WriteLine(ToBoolean(0));
+            WriteLine(ToBoolean(1));
+            WriteLine(ToBoolean(5));
 
             WriteLine("Do you want to edit path to your file? Press 1. Leave default? Press 0 or wait...");
+            Boolean wc = ToBoolean(Read());
+            var nO = new WantToChange(wc);
+            nO.ReturnBool();
 
-            bool tf = false;
-            int tfc = Read();
+            string path = "";
+
+            /*int tfc = Read();
 
             if(tfc == 1)
             {
@@ -32,8 +38,7 @@ namespace SecretApp2
             {
                 WriteLine("What's your path to the txt file?");
                 path = ReadLine();
-            }
-            WriteLine(path);
+            }*/
 
             WriteLine("Press enter if you are sure you want to proceed. ");
             ReadLine();
