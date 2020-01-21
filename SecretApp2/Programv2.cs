@@ -9,24 +9,42 @@ namespace SecretApp2
 {
     public partial class Program
     {
-        /*public static void ThreadsWork(Func MethodName)
+        static void sth(string[] args)
         {
-            try
+            Task autoSetting = new Task(() =>
             {
-                Thread t0 = new Thread(() =>
-                {
-                    object i = Test();
-                });
-            }
-            catch (Exception ex)
-            {
-                WriteLine("Error code:" + ex);
-            }
-        }
+                var sw = new Stopwatch();
+                var wtc = new WantToChange();
 
-        public static void Test()
-        {
-            WriteLine("5");
-        }*/
+                if (sw.ElapsedMilliseconds > 5000)
+                {
+                    wtc.Set(false);
+                }
+                wtc.ReturnBool();
+            });
+        
+        
+            Task manaulSetting = new Task(() =>
+            {
+                string wcS = ReadLine();
+                var wtc = new WantToChange();
+
+                if (wcS == "1")
+                {
+                    wtc.Set(true);
+                }
+                else if (wcS == "0")
+                {
+                    wtc.Set(false);
+                }
+                else
+                {
+                    WriteLine("Incorrect input. Restarting App");
+                //Process.Start
+                System.Environment.Exit(0);
+                }
+                wtc.ReturnBool();
+            });
+        }
     }
 }

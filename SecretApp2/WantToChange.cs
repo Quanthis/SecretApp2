@@ -15,6 +15,10 @@ namespace SecretApp2
 
         public WantToChange() { }
 
+        public void Set(bool isThatTrue)
+        {
+            Want = isThatTrue;
+        }
 
         public void ReturnBool()
         {

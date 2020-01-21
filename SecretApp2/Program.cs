@@ -4,6 +4,7 @@ using static System.Console;
 using System.IO;
 using System.Threading;
 using static System.Convert;
+using System.Threading.Tasks;
 
 namespace SecretApp2
 {
@@ -11,34 +12,51 @@ namespace SecretApp2
     {    
         static void Main(string[] args)
         {
-            WriteLine(ToBoolean(0));
-            WriteLine(ToBoolean(1));
-            WriteLine(ToBoolean(5));
-
             WriteLine("Do you want to edit path to your file? Press 1. Leave default? Press 0 or wait...");
-            Boolean wc = ToBoolean(Read());
-            var nO = new WantToChange(wc);
-            nO.ReturnBool();
+
+            Task autoSetting = new Task(() =>
+            {
+                var sw = new Stopwatch();
+                var wtc = new WantToChange();
+
+                if (sw.ElapsedMilliseconds > 5000)
+                {
+                    wtc.Set(false);
+                }
+                wtc.ReturnBool();
+            });
+
+
+            Task manaulSetting = new Task(() =>
+            {
+                string wcS = ReadLine();
+                var wtc = new WantToChange();
+                
+
+                if (wcS == "1")
+                {
+                    wtc.Set(true);
+                }
+                else if (wcS == "0")
+                {
+                    wtc.Set(false);
+                }
+                else
+                {
+                    WriteLine("Incorrect input. Restarting App");
+                    //Process.Start
+                    System.Environment.Exit(0);
+                }
+                wtc.ReturnBool();
+            });
+
+            autoSetting.Start();
+            Task.Delay(5000);
+            autoSetting.Wait();
+            //manaulSetting.Start();
 
             string path = "";
 
-            /*int tfc = Read();
-
-            if(tfc == 1)
-            {
-                tf = true;
-            }
-            
-            else if(tfc == 0)
-            {
-                tf = false;
-            }
-            WriteLine(tf);
-            if (tf)
-            {
-                WriteLine("What's your path to the txt file?");
-                path = ReadLine();
-            }*/
 
             WriteLine("Press enter if you are sure you want to proceed. ");
             ReadLine();
