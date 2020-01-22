@@ -19,9 +19,14 @@ namespace SecretApp2
                 var sw = new Stopwatch();
                 var wtc = new WantToChange();
 
-                if (sw.ElapsedMilliseconds > 5000)
+                for (short j = 0; j <= 6; j++)
                 {
-                    wtc.Set(false);
+                    if (sw.ElapsedMilliseconds > 5000)
+                    {
+                        wtc.Set(false);
+                        break;
+                    }
+                    Task.Delay(1000).Wait();
                 }
                 wtc.ReturnBool();
             });
@@ -29,31 +34,62 @@ namespace SecretApp2
 
             Task manaulSetting = new Task(() =>
             {
-                string wcS = ReadLine();
-                var wtc = new WantToChange();
-                
+                var sw = new Stopwatch();
+                sw.Start();
 
-                if (wcS == "1")
+                
+                var wtc = new WantToChange();
+
+                for (short j = 0; j <= 6; j++)
                 {
-                    wtc.Set(true);
+
+                    if (sw.ElapsedMilliseconds > 5000)
+                    {
+                        wtc.Set(false);
+                        break;
+                    }
+                    
+
+                    else 
+                    {
+                        string wcS = ReadLine();
+
+                        if (wcS == "1")
+                        {
+                            
+                            wtc.Set(true);
+                        }
+                        
+                        else if (wcS == "0")
+                        {
+                            wtc.Set(false);
+                        }
+
+                        else
+                        {
+                            WriteLine("Incorrect input. Restarting App...");
+                            //Process.Start
+                            Task.Delay(2000).Wait();
+                            Environment.Exit(0);
+                        }
+                    }
+
+                    
+
+                    
                 }
-                else if (wcS == "0")
-                {
-                    wtc.Set(false);
-                }
-                else
-                {
-                    WriteLine("Incorrect input. Restarting App");
-                    //Process.Start
-                    System.Environment.Exit(0);
-                }
+
+               
+
+
+
                 wtc.ReturnBool();
             });
 
-            autoSetting.Start();
-            Task.Delay(5000);
-            autoSetting.Wait();
-            //manaulSetting.Start();
+            //autoSetting.Start();
+            //autoSetting.Wait();
+            manaulSetting.Start();
+            manaulSetting.Wait();
 
             string path = "";
 
