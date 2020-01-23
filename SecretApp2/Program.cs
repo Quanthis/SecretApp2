@@ -26,7 +26,11 @@ namespace SecretApp2
                         wtc.Set(false);
                         break;
                     }
-                    Task.Delay(1000).Wait();
+                    else
+                    {
+                        autoSetting.is
+                        Task.Delay(1000).Wait();
+                    }
                 }
                 wtc.ReturnBool();
             });
