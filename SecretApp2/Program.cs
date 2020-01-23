@@ -40,23 +40,22 @@ namespace SecretApp2
                 
                 var wtc = new WantToChange();
 
-                for (short j = 0; j <= 6; j++)
-                {
+                //for (short j = 0; j <= 6; j++)
+                //{
 
                     if (sw.ElapsedMilliseconds > 5000)
                     {
                         wtc.Set(false);
-                        break;
-                    }
-                    
+                        //break;
+                        
+                    }                    
 
                     else 
                     {
                         string wcS = ReadLine();
 
                         if (wcS == "1")
-                        {
-                            
+                        {                            
                             wtc.Set(true);
                         }
                         
@@ -73,16 +72,9 @@ namespace SecretApp2
                             Environment.Exit(0);
                         }
                     }
-
                     
-
-                    
-                }
-
-               
-
-
-
+                //}
+                
                 wtc.ReturnBool();
             });
 
