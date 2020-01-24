@@ -48,5 +48,10 @@ namespace SecretApp2
 
             return wtc.ReturnBool();
         }
+
+        static void ShutDownTheOtherTask()
+        {
+
+        }
     }
 }

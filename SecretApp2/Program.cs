@@ -15,8 +15,10 @@ namespace SecretApp2
             WriteLine("Do you want to edit path to your file? Press 1. Leave default? Press 0 or wait...");
             var obj1 = new WantToChange();
             var obj2 = new WantToChange();
+            
+            
 
-            Parallel.Invoke(() => obj1.Set(AutoSet()), () => obj2.Set(ManaualSet()));
+            Parallel.Invoke(() => obj1.Set(AutoSet()), () => obj2.Set(ManaualSet()), () => task3());
             
             WriteLine($"Value of auto-set object: {obj1.ReturnBool()} \nValue of manual-set object: {obj2.ReturnBool()}");
 
