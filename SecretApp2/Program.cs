@@ -13,79 +13,12 @@ namespace SecretApp2
         static void Main(string[] args)
         {
             WriteLine("Do you want to edit path to your file? Press 1. Leave default? Press 0 or wait...");
+            var obj1 = new WantToChange();
+            var obj2 = new WantToChange();
 
-            Task autoSetting = new Task(() =>
-            {
-                var sw = new Stopwatch();
-                var wtc = new WantToChange();
-
-                for (short j = 0; j <= 6; j++)
-                {
-                    if (sw.ElapsedMilliseconds > 5000)
-                    {
-                        wtc.Set(false);
-                        break;
-                    }
-                    else
-                    {
-                        autoSetting.is
-                        Task.Delay(1000).Wait();
-                    }
-                }
-                wtc.ReturnBool();
-            });
-
-
-            Task manaulSetting = new Task(() =>
-            {
-                var sw = new Stopwatch();
-                sw.Start();
-
-                
-                var wtc = new WantToChange();
-
-                //for (short j = 0; j <= 6; j++)
-                //{
-
-                    if (sw.ElapsedMilliseconds > 5000)
-                    {
-                        wtc.Set(false);
-                        //break;
-                        
-                    }                    
-
-                    else 
-                    {
-                        string wcS = ReadLine();
-
-                        if (wcS == "1")
-                        {                            
-                            wtc.Set(true);
-                        }
-                        
-                        else if (wcS == "0")
-                        {
-                            wtc.Set(false);
-                        }
-
-                        else
-                        {
-                            WriteLine("Incorrect input. Restarting App...");
-                            //Process.Start
-                            Task.Delay(2000).Wait();
-                            Environment.Exit(0);
-                        }
-                    }
-                    
-                //}
-                
-                wtc.ReturnBool();
-            });
-
-            //autoSetting.Start();
-            //autoSetting.Wait();
-            manaulSetting.Start();
-            manaulSetting.Wait();
+            Parallel.Invoke(() => obj1.Set(AutoSet()), () => obj2.Set(ManaualSet()));
+            
+            WriteLine($"Value of auto-set object: {obj1.ReturnBool()} \nValue of manual-set object: {obj2.ReturnBool()}");
 
             string path = "";
 

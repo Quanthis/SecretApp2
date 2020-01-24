@@ -20,9 +20,9 @@ namespace SecretApp2
             Want = isThatTrue;
         }
 
-        public void ReturnBool()
+        public bool ReturnBool()
         {
-            Console.WriteLine(Want);
+            return Want;
         }
     }
 }

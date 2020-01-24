@@ -9,23 +9,25 @@ namespace SecretApp2
 {
     public partial class Program
     {
-        static void sth(string[] args)
-        {
-            Task autoSetting = new Task(() =>
-            {
+        static bool AutoSet()
+        {            
                 var sw = new Stopwatch();
                 var wtc = new WantToChange();
 
-                if (sw.ElapsedMilliseconds > 5000)
+                for (int i = 5; i >= 0; i--)
                 {
-                    wtc.Set(false);
+                    WriteLine($"Time left: {i}s");
+                    if (sw.ElapsedMilliseconds > 5000)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(1000);
                 }
-                wtc.ReturnBool();
-            });
+            return wtc.ReturnBool();
+        }
         
-        
-            Task manaulSetting = new Task(() =>
-            {
+        static bool ManaualSet()
+        {            
                 string wcS = ReadLine();
                 var wtc = new WantToChange();
 
@@ -43,8 +45,8 @@ namespace SecretApp2
                 //Process.Start
                 System.Environment.Exit(0);
                 }
-                wtc.ReturnBool();
-            });
+
+            return wtc.ReturnBool();
         }
     }
 }
